@@ -1,30 +1,39 @@
-import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
+import PropTypes from 'prop-types';
+import styled, { css } from 'styled-components';
 
-const _Tx = styled.p`
-    ${props => props.midium && css`
+const InnerTx = styled.p`
+    ${({ midium }) => midium && css`
         font-size: 14px;
     `}
-    ${props => props.large && css`
+    ${({ large }) => large && css`
         font-size: 20px;
     `}
 
-    ${props => props.color == 'red' && css`
+    ${({ color }) => color === 'red' && css`
         color: red;
     `}
-    ${props => props.color == 'black' && css`
+    ${({ color }) => color === 'black' && css`
         color: black
     `}
-`
+`;
 
-const Tx = props =>  <_Tx {...props}>{props.children}</_Tx>
+const Tx = ({ children, ...props }) => (
+    <InnerTx {...props}>
+        {children}
+    </InnerTx>
+);
+
+Tx.defaultProps = {
+    midium: false,
+    large: false,
+};
 
 Tx.propTypes = {
     /** テキストサイズ標準 */
     midium: PropTypes.bool,
     /** テキストサイズ大きい */
     large: PropTypes.bool,
-    children: PropTypes.element.isRequired
-}
+    children: PropTypes.element.isRequired,
+};
 
-export default Tx
+export default Tx;
