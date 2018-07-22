@@ -33,7 +33,10 @@ Tx.propTypes = {
     midium: PropTypes.bool,
     /** テキストサイズ大きい */
     large: PropTypes.bool,
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([
+        PropTypes.element,
+        PropTypes.string,
+    ]).isRequired,
 };
 
 export default Tx;
